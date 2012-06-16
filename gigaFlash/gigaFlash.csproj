@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EB5680AC-6A29-4416-96F0-8B75D196E1EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gigaFlash</RootNamespace>
+    <AssemblyName>gigaFlash</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColorUtils.cs" />
+    <Compile Include="ConfigObjects\ColorConfig.cs" />
+    <Compile Include="ConfigObjects\GrandConfigSerializer.cs" />
+    <Compile Include="ConfigObjects\LightConfig.cs" />
+    <Compile Include="ConfigObjects\RoomConfig.cs" />
+    <Compile Include="ConfigObjects\UserPrefObj.cs" />
+    <Compile Include="Delegates\Delegates.cs" />
+    <Compile Include="LightCore\LightState\ILight.cs" />
+    <Compile Include="LightCore\LightState\ILightState.cs" />
+    <Compile Include="LightCore\LightGroup.cs" />
+    <Compile Include="Mainform\IMainformView.cs" />
+    <Compile Include="Mainform\MainformButtons\MainformButtonView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mainform\MainformButtons\MainformButtonView.Designer.cs">
+      <DependentUpon>MainformButtonView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mainform\MainFormPresenter.cs" />
+    <Compile Include="Modules\AmpSine\AmpSinePresenter.cs" />
+    <Compile Include="Modules\AmpSine\AmpSinePresFactory.cs" />
+    <Compile Include="Modules\AmpSine\SineControl.cs" />
+    <Compile Include="Modules\AmpSine\IAmpSineView.cs" />
+    <Compile Include="Modules\ColorSaver\ColorSaverPresenter.cs" />
+    <Compile Include="Modules\ColorSaver\IColorSaverView.cs" />
+    <Compile Include="Modules\ILightModuleFactoryBase.cs" />
+    <Compile Include="Modules\IThraededView.cs" />
+    <Compile Include="Modules\IViewFactory.cs" />
+    <Compile Include="Modules\LightModulePresenterBase.cs" />
+    <Compile Include="Modules\LightSelector\ILightSelectorView.cs" />
+    <Compile Include="LightCore\Connection.cs" />
+    <Compile Include="LightCore\Light.cs" />
+    <Compile Include="Modules\LightSelector\LightSelectorFactory.cs" />
+    <Compile Include="Modules\LightSelector\LightSelectorPresenter.cs" />
+    <Compile Include="Modules\ModuleCatalog.cs" />
+    <Compile Include="Modules\ModuleOptions.cs" />
+    <Compile Include="Modules\Room\LightView\ILightView.cs" />
+    <Compile Include="Modules\Room\LightView\LightViewPresenter.cs" />
+    <Compile Include="Modules\Snake\ISnakeView.cs" />
+    <Compile Include="Modules\Snake\SnakePresenter.cs" />
+    <Compile Include="Modules\Snake\SnakePresFactory.cs" />
+    <Compile Include="Modules\ThreadPresenterBase.cs" />
+    <Compile Include="Modules\Thunder\IThunderView.cs" />
+    <Compile Include="Modules\Thunder\ThunderPresenter.cs" />
+    <Compile Include="Modules\Thunder\ThunderPresenterFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Mainform\MainformButtons\MainformButtonView.resx">
+      <DependentUpon>MainformButtonView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="LightCore\LightState\LightState.cs" />
+    <Compile Include="Modules\IModuleView.cs" />
+    <Compile Include="Modules\Room\IRoom.cs" />
+    <Compile Include="Modules\Room\RoomPresenter.cs" />
+    <Compile Include="Modules\Room\RoomPresFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
