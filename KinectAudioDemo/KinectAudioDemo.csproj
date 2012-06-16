@@ -115,13 +115,13 @@
     <Resource Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\gigaFlash\gigaFlash.csproj">
+      <Project>{EB5680AC-6A29-4416-96F0-8B75D196E1EC}</Project>
+      <Name>gigaFlash</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KinectWpfViewers\Microsoft.Samples.Kinect.WpfViewers.csproj">
       <Project>{4DE23893-27E7-423F-9BB6-BA21DAC2C45E}</Project>
       <Name>Microsoft.Samples.Kinect.WpfViewers</Name>
-    </ProjectReference>
-    <ProjectReference Include="2.0\csharp\gigaFlash\gigaFlash.csproj">
-      <Project>{EB5680AC-6A29-4416-96F0-8B75D196E1EC}</Project>
-      <Name>gigaFlash</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
