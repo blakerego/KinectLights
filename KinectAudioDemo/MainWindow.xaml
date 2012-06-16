@@ -1,0 +1,36 @@
+﻿<Window x:Class="KinectAudioDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:kv="clr-namespace:Microsoft.Samples.Kinect.WpfViewers;assembly=Microsoft.Samples.Kinect.WpfViewers" 
+        Title="Kinect Audio Demo - Sound Source Localization" Height="612" Width="700">
+    <Grid ShowGridLines="True" Background="Black" Height="572">
+        <Ellipse Width="600"  Stroke="Green" StrokeThickness="2" Height="600" Margin="0,-300,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Ellipse Width="300"  Stroke="Green" StrokeThickness="1" Height="300" Margin="0,-150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Border BorderBrush="#FF2140EB" BorderThickness="5" Height="305" HorizontalAlignment="Center" Margin="0,-5,0,0" Name="border1" VerticalAlignment="Top" Width="12" Background="#FF12A9EB" CornerRadius="5" RenderTransformOrigin="0.5,0" >
+            <Border.RenderTransform>
+                <RotateTransform Angle="0" x:Name="rotTx"></RotateTransform>
+            </Border.RenderTransform>
+        </Border>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+            <Image x:Name="imgWav" Height="100" Width="500"/>
+            <Border x:Name="bdConf" Width="700" Height="30" BorderBrush="Transparent" BorderThickness="3">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#FF770000" Offset="0" />
+                        <GradientStop Color="#FF20CB12" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock x:Name="tbConf" Text="SSL Conf: 0.00" Foreground="Yellow"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <Border.Clip>
+                    <RectangleGeometry Rect="0,0,100,50" x:Name="clipConf"/>
+                </Border.Clip>
+            </Border>
+            <TextBlock x:Name="tbColor" Text="" Foreground="White" Height="50" FontSize="20" TextAlignment="Center" Padding="0,10,0,0"/>
+            <TextBlock x:Name="tbSpeechStatus" Text="" Foreground="White" Height="60" FontSize="16" TextAlignment="Left" Padding="0,10,0,10"/>
+            <CheckBox x:Name="enableAec" Foreground="White" FontSize="20" Checked="EnableAecChecked" Unchecked="EnableAecChecked" IsEnabled="False">
+                Enable Echo Cancellation on Default speakers
+            </CheckBox>
+        </StackPanel>
+        <kv:KinectSensorChooser x:Name="SensorChooser" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
