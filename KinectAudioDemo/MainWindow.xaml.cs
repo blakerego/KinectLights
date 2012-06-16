@@ -20,6 +20,8 @@ namespace KinectAudioDemo
     using Microsoft.Speech.AudioFormat;
     using Microsoft.Speech.Recognition;
 using gigaFlash;
+using Microsoft.Samples.Kinect.KinectExplorer;
+    using gigaFlash.Delegates;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -70,8 +72,46 @@ using gigaFlash;
 
             SensorChooser.KinectSensorChanged += this.SensorChooserKinectSensorChanged;
 
-            mLightState = new LightState(6); 
+            mKinectExplorer = new KinectExplorerWindow();
+            mKinectExplorer.KinectStart();
+
+            mLightState = new LightState(6);
+
+
+            kinect = KinectSensor.KinectSensors.FirstOrDefault(s => s.Status == KinectStatus.Connected); // Get first Kinect Sensor
+            kinect.SkeletonStream.Enable(); // Enable skeletal tracking
+            this.skeletonData = new Skeleton[kinect.SkeletonStream.FrameSkeletonArrayLength];
+            kinect.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(sensor_SkeletonFrameReady);
+            
         }
+
+        Skeleton[] skeletonData; 
+
+        void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        {
+            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame()) // Open the Skeleton frame
+            {
+                if (skeletonFrame != null && this.skeletonData != null) // check that a frame is available
+                {
+                    skeletonFrame.CopySkeletonDataTo(this.skeletonData); // get the skeletal information in this frame
+
+                    foreach (Skeleton s in skeletonData)
+                    {
+                        if (s.Joints[JointType.WristRight].Position.X != 0 &&
+                            s.Joints[JointType.WristLeft].Position.Y != 0)
+                        {
+                            HorizontalHandDistance =
+                                s.Joints[JointType.WristRight].Position.X -
+                                s.Joints[JointType.WristLeft].Position.Y;
+                            mLightState.Update(LightMapper.GetColorFromDistance(HorizontalHandDistance)); 
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public float HorizontalHandDistance = 0; 
 
         private static RecognizerInfo GetKinectRecognizer()
         {
@@ -161,6 +201,8 @@ using gigaFlash;
                 this.readyTimer.Stop();
                 this.readyTimer = null;
             }
+
+            mKinectExplorer.KinectStop();
         }
 
         private void MainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -306,6 +348,7 @@ Ensure you have the Microsoft Speech SDK installed and configured.",
             Dispatcher.BeginInvoke(new Action(() => { tbColor.Text = instructions; }), DispatcherPriority.Normal);
         }
 
+        protected KinectExplorerWindow mKinectExplorer; 
         private void Start()
         {
             var audioSource = this.kinect.AudioSource;

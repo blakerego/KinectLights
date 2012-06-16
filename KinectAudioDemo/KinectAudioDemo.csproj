@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LightMapper.cs" />
     <Compile Include="UserControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -118,6 +119,10 @@
     <ProjectReference Include="..\gigaFlash\gigaFlash.csproj">
       <Project>{EB5680AC-6A29-4416-96F0-8B75D196E1EC}</Project>
       <Name>gigaFlash</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KinectExplorer\KinectExplorer.csproj">
+      <Project>{35D624F4-9657-4D87-8FD3-6CE4E00CB9DA}</Project>
+      <Name>KinectExplorer</Name>
     </ProjectReference>
     <ProjectReference Include="..\KinectWpfViewers\Microsoft.Samples.Kinect.WpfViewers.csproj">
       <Project>{4DE23893-27E7-423F-9BB6-BA21DAC2C45E}</Project>
