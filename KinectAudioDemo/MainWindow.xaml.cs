@@ -200,13 +200,15 @@ Ensure you have the Microsoft Speech SDK installed and configured.",
                 return null;
             }
 
-            var colors = new Choices();
-            colors.Add("red");
-            colors.Add("green");
-            colors.Add("blue");
+            var commands = new Choices();
+            commands.Add("red");
+            commands.Add("green");
+            commands.Add("blue");
+
+            commands.Add("start"); 
 
             var gb = new GrammarBuilder { Culture = ri.Culture };
-            gb.Append(colors);
+            gb.Append(commands);
 
             // Create the actual Grammar instance, and then load it into the speech recognizer.
             var g = new Grammar(gb);
@@ -272,8 +274,16 @@ Ensure you have the Microsoft Speech SDK installed and configured.",
                     {
                         light.Color = System.Drawing.Color.Blue; 
                     }
-                    mLightState.Update(); 
+                    mLightState.Update();
+                    break;
 
+                case "START":
+                    brush = new SolidColorBrush(Colors.White); 
+                    foreach (Light light in mLightState.Lights)
+                    {
+                        light.Color = System.Drawing.Color.White;
+                    }
+                    mLightState.Update(); 
                     break;
                 default:
                     brush = this.blackBrush;
